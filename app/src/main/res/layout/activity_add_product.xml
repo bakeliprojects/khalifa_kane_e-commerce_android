@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/addprod"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="Marque"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" />
+        <EditText
+            android:id="@+id/marque"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Marque"
+            android:inputType="text" />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="Categorie"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" />
+        <EditText
+            android:id="@+id/categorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Categorie"
+            android:inputType="text"
+            android:layout_weight="0.23"
+            />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="Année"
+            android:layout_width="71dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4" />
+
+        <EditText
+            android:id="@+id/annee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Année"
+            android:inputType="number" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="Prix"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5" />
+        <EditText
+            android:id="@+id/prix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Prix"
+            android:inputType="numberDecimal"
+            android:layout_weight="0.13"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/description"
+        android:layout_weight="0.12"
+        android:hint="Description"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:text="Photo"
+            android:layout_width="74dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7" />
+        <Button
+            android:text="Selectionner photo"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/photo"
+            android:layout_weight="0.42" />
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            app:srcCompat="@android:drawable/status_bar_item_app_background"
+            android:id="@+id/imgView" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/enregistrer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enregistrer"
+            android:layout_weight="1"
+            android:layout_marginLeft="25dip"
+            android:layout_marginRight="25dip"
+            />
+        <Button
+            android:id="@+id/effacer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Effacer"
+            android:layout_weight="1"
+            android:layout_marginLeft="25dip"
+            android:layout_marginRight="25dip"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>

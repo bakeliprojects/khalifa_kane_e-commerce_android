@@ -35,6 +35,7 @@ public class Produit extends RealmObject {
 
     public Produit(Produit p)
     {
+        this.id=p.getId();
         this.marque=p.marque;
         this.categorie=p.categorie;
         this.prix=p.prix;

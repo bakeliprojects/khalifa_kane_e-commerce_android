@@ -17,10 +17,12 @@ import android.widget.ImageView;
 import com.example.ababacar.e_commerce.Model.Produit;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class AddProduct extends AppCompatActivity {
 
+    private static final String TAG = "AddProduct";
     private Realm realm;
 
     private Button enregistrer = null;
@@ -43,8 +45,8 @@ public class AddProduct extends AppCompatActivity {
         setContentView(R.layout.activity_add_product);
         realm = Realm.getDefaultInstance();
 
-        enregistrer = (Button) findViewById(R.id.enregistrer) ;
-        effacer = (Button) findViewById(R.id.effacer) ;
+        enregistrer = (Button) findViewById(R.id.enregistrer);
+        effacer = (Button) findViewById(R.id.effacer);
         addphoto = (Button) findViewById(R.id.photo);
 
         marque = (EditText) findViewById(R.id.marque);
@@ -107,10 +109,16 @@ public class AddProduct extends AppCompatActivity {
 
     private void Sate_to_Database(final String marque, final String categorie, final String prix, final String annee, final String description, final String foto) {
 
-        realm.executeTransactionAsync(new Realm.Transaction() {
+        RealmResults<Produit> results = realm.where(Produit.class).findAll();
+        int   max     = (int) results.max("id").longValue();
+        Log.e(TAG, "Sate_to_Database: "+max );
+        final int id = max+1;
+        Log.e(TAG, "Sate_to_Database: "+id );
+            realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
                 Produit produit = bgRealm.createObject(Produit.class);
+                produit.setId(id);
                 produit.setMarque(marque);
                 produit.setCategorie(categorie);
                 produit.setPrix(Double.parseDouble(prix));

@@ -28,6 +28,7 @@ import io.realm.RealmResults;
 
 public class GaleryAdapterManager extends RecyclerView.Adapter<GaleryAdapterManager.ViewHolder>  {
 
+    private static final String TAG = "GaleryAdapterManager";
     //SwipeRefreshLayout  swipeRefreshLayout;
     private Realm realm;
     private ArrayList<Produit> Lproduit;
@@ -89,13 +90,19 @@ public class GaleryAdapterManager extends RecyclerView.Adapter<GaleryAdapterMana
 
         @Override
         public void onClick(View view) {
+            Produit p = Lproduit.get(getAdapterPosition());
+
            if(bte.isPressed())
            {
 
+                Intent intent = new Intent(context.getApplicationContext(),UpdateProduct.class);
+                intent.putExtra("extra",p.getId());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
            }
             else if (btd.isPressed())
            {
-               Produit p = Lproduit.get(getAdapterPosition());
+
                final RealmResults<Produit> produit = realm.where(Produit.class).equalTo("id",p.getId()).findAll();
                realm.executeTransaction(new Realm.Transaction() {
                    @Override

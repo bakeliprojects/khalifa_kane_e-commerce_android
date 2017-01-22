@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,6 +24,8 @@ import io.realm.RealmResults;
 
 public class ManageProductActivity extends AppCompatActivity {
 
+    private static final String TAG = "ManageProductActivity";
+
     private SwipeRefreshLayout swipeContainer;
     private Realm realm;
     private Button btnAdd;
@@ -30,12 +33,22 @@ public class ManageProductActivity extends AppCompatActivity {
     private Button btnDel;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manage_product);
         realm = Realm.getDefaultInstance();
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer_layout);
         initViews();
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                RefreshContent();
+            }
+        });
 
         btnAdd = (Button) findViewById(R.id.btnadd) ;
         btnEdit = (Button) findViewById(R.id.btneditproduit) ;
@@ -53,17 +66,31 @@ public class ManageProductActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initViews();
+    }
+
+    private void RefreshContent() {
+
+        initViews();
+        swipeContainer.setRefreshing(false);
+
+    }
+
     private void initViews() {
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.card_recycler_view_manage_product);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-
         ArrayList produit = prepareData();
-        GaleryAdapterManager adapter = new GaleryAdapterManager(produit,getApplicationContext());
+        GaleryAdapterManager adapter = new GaleryAdapterManager(produit,ManageProductActivity.this);
         recyclerView.setAdapter(adapter);
 
     }
+
+
 
     private ArrayList prepareData() {
         ArrayList Lproduit = new ArrayList<>();
